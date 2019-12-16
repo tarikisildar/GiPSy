@@ -100,6 +100,7 @@ expression:		expression assignment_op term_comp_log
 	  	  		| term_comp_log
 			| expression post_pre_ops
 			| post_pre_ops expression
+			| NOT expression
 
 post_pre_ops:		INCREMENT | DECREMENT
 

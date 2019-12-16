@@ -1,7 +1,7 @@
 import Math;
 from Graphs import nodes;
 Graph harita = new Graph();
-void mai()
+void main()
 {
 	int a=3;
 	string homeAddress = "kurt mahallesi cobain caddesi no:94 Kecioren/Ankara";
@@ -11,7 +11,7 @@ void mai()
 
 		golbasi = new crossRoad(39.790496838,32.80166346);
 		asti = new crossRoad(39.920073, 32.815298);
-		haria.add(golbasi);
+		harita.add(golbasi);
 		harita.add(asti);
 		harita.addRoad(golbasi,asti,82);
 
@@ -23,7 +23,7 @@ void mai()
                 	printf(getroadspeed(harita.getRoads()[i]));
         	}
 	}
-	printf("your distance to home is",getDistance(getlocation(user),searchAndShow(homeAddress)));		
+	print("your distance to home is",getDistance(getlocation(user),searchAndShow(homeAddress)));		
 }
 
 GpsLoc searchAndShow(string address)
@@ -38,13 +38,16 @@ float getDistance(GpsLoc loc1, GpsLoc loc2)
 	return Math.squareroot(Math.square(loc1.lat() - loc2.lat()) + Math.square(loc1.lon() - loc2.lon())); 
 }
 
-class Graph
+class Util
 {
-	Graph(){
-		a();
-		while(1==1)
+	Util(Graph g){
+		int i = g.count();
+		while(!g.isEmpty())
         	{
-               		showOnMap("sadas");
+			crossroad temp = g.getCrossRoad(i);
+               		showOnMap(temp);
+			g.remove(temp);
+			i--;
         	}
 	}
 	int a[5] = {1,2,3,4};
