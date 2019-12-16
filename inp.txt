@@ -2,19 +2,29 @@ import adsdffs;
 import asdfasdf;
 void f(int a)
 {
-	
+	Graph graph = new Graph();
 	int a=3;
 	sadf();
 	for(int a=5;a<6;a++)
 	{
 		pass ;
 	}
+	string tariq = ("emre"+"fatih") * 333;
 	
+	if(tariq >=graph.a())
+	{
+		pass;
+	}		
 }
 class Graph
 {
 	Graph(){
-		a(5);
+		a();
+		while(1==1)
+        	{
+               		showOnMap("sadas");
+        	}
 	}
 	int a[5] = {1,2,3,4};
+
 }

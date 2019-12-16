@@ -14,7 +14,6 @@
 %define parse.error verbose
 %%
 start: program  {
-                             printf("Input is valid!");
                         return 0;
                 }
 
@@ -54,6 +53,7 @@ statement:	PASS SEMICOLON
 		
 
 if_statement:	IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE ELSE LEFTBRACE statement_list RIGHTBRACE
+	    | IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
 
 loop_statements:	for
@@ -86,6 +86,7 @@ decl_type_list: decl_type
 
 decl_type:	list_type list_dim
 	 | type_const ID
+	|ID ID
 
 list_type:	type_const ID
 	 		| ID
@@ -160,7 +161,7 @@ func_call:	func_name LEFT_PARANT  parameter_list RIGHT_PARANT
 func_name:	ID DOT func_name | ID
 
 class_init:	NEW ID LEFT_PARANT parameter_list  RIGHT_PARANT
-	  | NEW ID parameter_list LEFT_PARANT RIGHT_PARANT 
+	  | NEW ID LEFT_PARANT RIGHT_PARANT 
 
 parameter_list:	parameter
 	      | parameter COMMA parameter_list

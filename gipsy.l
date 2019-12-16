@@ -16,7 +16,7 @@ upper_letter [A-Z]
 alphabetic ({lower_letter}|{upper_letter}|_)
 character ({digit}|{alphabetic})
 special ([_+\-\{\}\(\)\[\]\=\/!%&$])
-string ((\"([^\\\"]|\\.)*\")|(\’([^\\\’]|\\.)*\’))
+string ((\"([^\\\"]|\\.)*\")|(\'([^\\\']|\\.)*\'))
 var_ident {alphabetic}+{character}*
 list {var_ident}(\[{integer}*\])+
 
@@ -74,7 +74,8 @@ list {var_ident}(\[{integer}*\])+
 {integer}		return INTEGER;
 {float}			return FLOAT;
 {string}			return STRING;
-\n			{};
+\n                      {};
+[ \t]			{}; 			
 %%
 
 int yywrap(void)		{ return 1; }
