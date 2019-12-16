@@ -1,0 +1,20 @@
+import adsdffs;
+import asdfasdf;
+void f(int a)
+{
+	
+	int a=3;
+	sadf();
+	for(int a=5;a<6;a++)
+	{
+		pass ;
+	}
+	
+}
+class Graph
+{
+	Graph(){
+		a(5);
+	}
+	int a[5] = {1,2,3,4};
+}
