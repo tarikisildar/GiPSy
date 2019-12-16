@@ -128,7 +128,7 @@ term_add:		term_add add_op term_mult
 term_mult:		term_mult mult_op term_paranthesis 
 	 	 		| term_paranthesis
 
-term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT | ID | number | STRING | func_call | class_init
+term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT | ID | ID list_dim | number | STRING | func_call | class_init
 
 func_call:		func_name LEFT_PARANT  parameter_list RIGHT_PARANT
 	 	 		| func_name LEFT_PARANT  RIGHT_PARANT 
@@ -140,8 +140,7 @@ class_init:		NEW ID LEFT_PARANT parameter_list RIGHT_PARANT
 
 parameter_list:		parameter
 	      	      		| parameter COMMA parameter_list
-				| parameter list_dim
-				| parameter list_dim COMMA parameter_list
+
 
 parameter:		assigned_parameter
 	 	 		| non_assigned_parameter
