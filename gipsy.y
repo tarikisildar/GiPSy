@@ -96,12 +96,14 @@ list_dim: 		LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE
 decl_init:		ASSIGNMENT_OP expression
 	 	 		| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
 
-expression:		expression assignment_op term_comp_log
-	  	  		| term_comp_log
-			| expression post_pre_ops
-			| post_pre_ops expression
-			| NOT expression
+expression:		expression assignment_op expression_post
+	  	  		| expression_post
 
+expression_post:  expression_post post_pre_ops
+			| post_pre_ops expression_post
+			| NOT expression_post
+            | term_comp_log
+            
 post_pre_ops:		INCREMENT | DECREMENT
 
 term_comp_log:		term_comp_log comprasion_op term_add
