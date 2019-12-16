@@ -1,21 +1,43 @@
-import adsdffs;
-import asdfasdf;
-void f(int a)
+import Math;
+from Graphs import nodes;
+Graph harita = new Graph();
+void mai()
 {
-	Graph graph = new Graph();
 	int a=3;
-	sadf();
-	for(int a=5;a<6;a++)
-	{
-		pass ;
-	}
-	string tariq = ("emre"+"fatih") * 333;
+	string homeAddress = "kurt mahallesi cobain caddesi no:94 Kecioren/Ankara";
 	
-	if(tariq >=graph.a())
+	if(harita.isEmpty())
 	{
-		pass;
-	}		
+
+		golbasi = new crossRoad(39.790496838,32.80166346);
+		asti = new crossRoad(39.920073, 32.815298);
+		haria.add(golbasi);
+		harita.add(asti);
+		harita.addRoad(golbasi,asti,82);
+
+	}
+	else
+	{
+		for(int i = 0; i < harita.count(); i++)
+        	{
+                	printf(getroadspeed(harita.getRoads()[i]));
+        	}
+	}
+	printf("your distance to home is",getDistance(getlocation(user),searchAndShow(homeAddress)));		
 }
+
+GpsLoc searchAndShow(string address)
+{
+	showtarget(address);
+	return searchlocation(address);
+
+} 
+
+float getDistance(GpsLoc loc1, GpsLoc loc2)
+{
+	return Math.squareroot(Math.square(loc1.lat() - loc2.lat()) + Math.square(loc1.lon() - loc2.lon())); 
+}
+
 class Graph
 {
 	Graph(){

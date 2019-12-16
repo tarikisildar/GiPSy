@@ -74,27 +74,26 @@ extern int yydebug;
     LEFT_SQUARE_BRACE = 284,
     RIGHT_SQUARE_BRACE = 285,
     SPECIAL = 286,
-    PRINT = 287,
-    IF = 288,
-    ELSE = 289,
-    FOR = 290,
-    WHILE = 291,
-    CLASS = 292,
-    NEW = 293,
-    IMPORT = 294,
-    MAIN = 295,
-    PLUS_EQ = 296,
-    VOID = 297,
-    RETURN = 298,
-    PASS = 299,
-    INTEGER_TYPE = 300,
-    STRING_TYPE = 301,
-    FLOAT_TYPE = 302,
-    ID = 303,
-    INTEGER = 304,
-    FLOAT = 305,
-    STRING = 306,
-    UNSIGNED = 307
+    IF = 287,
+    ELSE = 288,
+    FOR = 289,
+    WHILE = 290,
+    CLASS = 291,
+    NEW = 292,
+    IMPORT = 293,
+    M = 294,
+    PLUS_EQ = 295,
+    VOID = 296,
+    RETURN = 297,
+    PASS = 298,
+    INTEGER_TYPE = 299,
+    STRING_TYPE = 300,
+    FLOAT_TYPE = 301,
+    ID = 302,
+    INTEGER = 303,
+    FLOAT = 304,
+    STRING = 305,
+    UNSIGNED = 306
   };
 #endif
 /* Tokens.  */
@@ -127,27 +126,26 @@ extern int yydebug;
 #define LEFT_SQUARE_BRACE 284
 #define RIGHT_SQUARE_BRACE 285
 #define SPECIAL 286
-#define PRINT 287
-#define IF 288
-#define ELSE 289
-#define FOR 290
-#define WHILE 291
-#define CLASS 292
-#define NEW 293
-#define IMPORT 294
-#define MAIN 295
-#define PLUS_EQ 296
-#define VOID 297
-#define RETURN 298
-#define PASS 299
-#define INTEGER_TYPE 300
-#define STRING_TYPE 301
-#define FLOAT_TYPE 302
-#define ID 303
-#define INTEGER 304
-#define FLOAT 305
-#define STRING 306
-#define UNSIGNED 307
+#define IF 287
+#define ELSE 288
+#define FOR 289
+#define WHILE 290
+#define CLASS 291
+#define NEW 292
+#define IMPORT 293
+#define M 294
+#define PLUS_EQ 295
+#define VOID 296
+#define RETURN 297
+#define PASS 298
+#define INTEGER_TYPE 299
+#define STRING_TYPE 300
+#define FLOAT_TYPE 301
+#define ID 302
+#define INTEGER 303
+#define FLOAT 304
+#define STRING 305
+#define UNSIGNED 306
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

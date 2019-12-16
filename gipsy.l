@@ -8,8 +8,8 @@
 %}
 
 digit  [0-9]
-integer ([+-]?[1-9]{digit}*)
-unsignedInteger ([1-9]{digit}*)
+integer ([+-]?[1-9]{digit}*|0)
+unsignedInteger ([1-9]{digit}*|0)
 float ([+-]?{digit}*(\.){digit}+)
 lower_letter [a-z]
 upper_letter [A-Z]
@@ -53,7 +53,6 @@ list {var_ident}(\[{integer}*\])+
 {special}		return SPECIAL;
 "and"			return AND_OP;
 "or"			return OR_OP;
-"print"			return PRINT;
 "if"			return IF;
 "else"			return ELSE;
 "for"			return FOR;
@@ -62,8 +61,7 @@ list {var_ident}(\[{integer}*\])+
 "class"			return CLASS;
 "new"			return NEW;
 "import"		return IMPORT;
-"from"			return FROM;
-"main"			return MAIN;				
+"from"			return FROM;				
 "void"			return VOID;
 "return"		return RETURN;
 "int"			return INTEGER_TYPE;

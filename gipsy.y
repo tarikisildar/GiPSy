@@ -9,7 +9,7 @@
 %token MULTIPLY DIVIDE MODULUS SEMICOLON GREATER SMALLER GEQUAL LEQUAL FROM
 %token COMMA DOT NOT MINUS_EQ INCREMENT DECREMENT ASSIGNMENT_OP NOT_EQUAL EQUALITY_CHECK AND_OP OR_OP
 %token LEFTBRACE RIGHTBRACE LEFT_PARANT RIGHT_PARANT LEFT_SQUARE_BRACE RIGHT_SQUARE_BRACE
-%token SPECIAL PRINT IF ELSE FOR WHILE CLASS NEW IMPORT MAIN PLUS_EQ VOID RETURN PASS
+%token SPECIAL IF ELSE FOR WHILE CLASS NEW IMPORT M PLUS_EQ VOID RETURN PASS
 %token INTEGER_TYPE STRING_TYPE FLOAT_TYPE ID INTEGER FLOAT STRING UNSIGNED
 %define parse.error verbose
 %%
@@ -46,7 +46,7 @@ statement:		PASS SEMICOLON
 			| func_call SEMICOLON
 			| decl
 			| return_statement
-		
+			| expression SEMICOLON	
 if_statement:		IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE ELSE LEFTBRACE statement_list RIGHTBRACE
 	    	    		| IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
@@ -91,6 +91,7 @@ list: 			LEFTBRACE list COMMA list RIGHTBRACE
 
 list_dim: 		LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE
 				| LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE list_dim
+				| LEFT_SQUARE_BRACE ID RIGHT_SQUARE_BRACE
 
 decl_init:		ASSIGNMENT_OP expression
 	 	 		| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
@@ -138,13 +139,15 @@ class_init:		NEW ID LEFT_PARANT parameter_list RIGHT_PARANT
 
 parameter_list:		parameter
 	      	      		| parameter COMMA parameter_list
+				| parameter list_dim
+				| parameter list_dim COMMA parameter_list
 
 parameter:		assigned_parameter
 	 	 		| non_assigned_parameter
 
 assigned_parameter:	ID ASSIGNMENT_OP non_assigned_parameter
 
-non_assigned_parameter:	number | STRING | func_call | ID | class_init 
+non_assigned_parameter:	 expression 
 
 %%
 
