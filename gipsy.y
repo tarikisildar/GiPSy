@@ -14,169 +14,137 @@
 %define parse.error verbose
 %%
 start: program  {
-                        return 0;
+                             return 0;
                 }
 
-program: header program
-       | decl_list
+program:		header program | decl_list
 
-header :	IMPORT ID SEMICOLON
-       | FROM import_from IMPORT import_list SEMICOLON
+header :		IMPORT ID SEMICOLON
+              			| FROM import_from IMPORT import_list SEMICOLON
 
-import_from:	ID
-	   | ID DOT ID
+import_from:		ID | ID DOT ID
 
-import_list:	ID 
-	   | ID COMMA ID
+import_list:		ID | ID COMMA ID
 
-decl_list:	decl | decl decl_list
+decl_list:		decl | decl decl_list
 
-decl:		function_def
-    		| class_def
-		| decl_type decl_init SEMICOLON
-| decl_type SEMICOLON
+decl:			function_def
+    			| class_def
+			| decl_type decl_init SEMICOLON
+			| decl_type SEMICOLON
 
 
-function_def:	return_type LEFT_PARANT decl_type_list RIGHT_PARANT LEFTBRACE statement_list 	RIGHTBRACE
-	    | return_type LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
+function_def:		return_type LEFT_PARANT decl_type_list RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
+	    	    		| return_type LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
 
-statement_list:	statement
-	      | statement statement_list 
+statement_list:		statement
+	      	      		| statement statement_list 
 
-statement:	PASS SEMICOLON
-	 	|if_statement
+statement:		PASS SEMICOLON
+	 	 		| if_statement
 	 		| loop_statements
-		|func_call SEMICOLON
-		| decl
+			| func_call SEMICOLON
+			| decl
+			| return_statement
 		
-		| return_statement
-		
+if_statement:		IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE ELSE LEFTBRACE statement_list RIGHTBRACE
+	    	    		| IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
-if_statement:	IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE ELSE LEFTBRACE statement_list RIGHTBRACE
-	    | IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
+loop_statements:	for | while
 
+while:			WHILE LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
-loop_statements:	for
-    | while
+for:			FOR LEFT_PARANT for_init SEMICOLON expression SEMICOLON expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
-while:	WHILE LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
-
-for:	FOR LEFT_PARANT for_init SEMICOLON expression SEMICOLON expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
-
-for_init:	decl_type decl_init
-	| expression
+for_init:		decl_type decl_init
+				| expression
 
 return_statement:	RETURN parameter SEMICOLON
 
-return_type:	decl_type
-	   | VOID ID	
+return_type:		decl_type | VOID ID	
 
-class_def:	CLASS ID LEFTBRACE constructor_list decl_list RIGHTBRACE
-	 | CLASS ID LEFTBRACE constructor_list RIGHTBRACE
-| CLASS ID LEFTBRACE decl_list RIGHTBRACE
+class_def:		CLASS ID LEFTBRACE constructor_list decl_list RIGHTBRACE
+	 	 		| CLASS ID LEFTBRACE constructor_list RIGHTBRACE
+			| CLASS ID LEFTBRACE decl_list RIGHTBRACE
 
 constructor_list:	constructor
-		| constructor constructor_list
+					| constructor constructor_list
 
-constructor:	ID LEFT_PARANT decl_type_list RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
-	   | ID LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
+constructor:		ID LEFT_PARANT decl_type_list RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
+	   	   		| ID LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
 
-decl_type_list: decl_type 
-	      		| decl_type COMMA decl_type_list
+decl_type_list:		decl_type 
+	      	      		| decl_type COMMA decl_type_list
 
-decl_type:	list_type list_dim
-	 | type_const ID
-	|ID ID
+decl_type:		list_type list_dim
+	 	 		| type_const ID
+			| ID ID
 
-list_type:	type_const ID
-	 		| ID
+list_type:		type_const ID | ID
 
-list_element:	non_assigned_parameter COMMA list_element
-	    		| non_assigned_parameter
+list_element:		non_assigned_parameter COMMA list_element
+	    	    		| non_assigned_parameter
 
-list: LEFTBRACE list COMMA list RIGHTBRACE | LEFTBRACE list RIGHTBRACE 
-    | list_element
+list: 			LEFTBRACE list COMMA list RIGHTBRACE
+        			| LEFTBRACE list RIGHTBRACE 
+    			| list_element
 
-list_dim: LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE
-		| LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE list_dim
+list_dim: 		LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE
+				| LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE list_dim
 
-decl_init:	ASSIGNMENT_OP expression
-	 	| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
+decl_init:		ASSIGNMENT_OP expression
+	 	 		| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
 
-expression:	expression assignment_op term_comp_log
-	  | term_comp_log
-| expression post_pre_ops
-| post_pre_ops expression
+expression:		expression assignment_op term_comp_log
+	  	  		| term_comp_log
+			| expression post_pre_ops
+			| post_pre_ops expression
 
-post_pre_ops:	INCREMENT
-	    | DECREMENT
+post_pre_ops:		INCREMENT | DECREMENT
 
-term_comp_log:	term_comp_log comprasion_op term_add
-	     | term_comp_log logical_op term_add
-| term_add
+term_comp_log:		term_comp_log comprasion_op term_add
+	     	     		| term_comp_log logical_op term_add
+			| term_add
 
-logical_op:	AND_OP
-	  | OR_OP
+logical_op:		AND_OP | OR_OP
 
-add_op:	PLUS
-      | MINUS
+add_op:			PLUS | MINUS
 
-mult_op:	MULTIPLY
-       | DIVIDE
-| MODULUS
+mult_op:		MULTIPLY | DIVIDE | MODULUS
 
-assignment_op:	ASSIGNMENT_OP
-	     | PLUS_EQ
-| MINUS_EQ 
+assignment_op:		ASSIGNMENT_OP | PLUS_EQ | MINUS_EQ 
 
-comprasion_op:	SMALLER
-	     | GREATER
-| GEQUAL
-| LEQUAL
-| EQUALITY_CHECK
+comprasion_op:		SMALLER | GREATER | GEQUAL | LEQUAL | EQUALITY_CHECK
 
-number:	INTEGER
-      | FLOAT
-	|UNSIGNED
-type_const:	INTEGER_TYPE
-	  | STRING_TYPE
-| FLOAT_TYPE
+number:			INTEGER | FLOAT | UNSIGNED
 
-term_add:	term_add add_op term_mult
-	| term_mult
+type_const:		INTEGER_TYPE | STRING_TYPE | FLOAT_TYPE
 
-term_mult:	term_mult mult_op term_paranthesis
-	 | term_paranthesis
+term_add:		term_add add_op term_mult
+				| term_mult
 
-term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT
-		| ID
-| number
-| STRING
-| func_call
-| class_init
+term_mult:		term_mult mult_op term_paranthesis 
+	 	 		| term_paranthesis
 
-func_call:	func_name LEFT_PARANT  parameter_list RIGHT_PARANT
-	 | func_name LEFT_PARANT  RIGHT_PARANT 
+term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT | ID | number | STRING | func_call | class_init
 
-func_name:	ID DOT func_name | ID
+func_call:		func_name LEFT_PARANT  parameter_list RIGHT_PARANT
+	 	 		| func_name LEFT_PARANT  RIGHT_PARANT 
 
-class_init:	NEW ID LEFT_PARANT parameter_list  RIGHT_PARANT
-	  | NEW ID LEFT_PARANT RIGHT_PARANT 
+func_name:		ID DOT func_name | ID
 
-parameter_list:	parameter
-	      | parameter COMMA parameter_list
+class_init:		NEW ID LEFT_PARANT parameter_list RIGHT_PARANT
+	  	  		| NEW ID LEFT_PARANT RIGHT_PARANT 
 
-parameter:		assigned_parameter	
-	 | non_assigned_parameter
+parameter_list:		parameter
+	      	      		| parameter COMMA parameter_list
+
+parameter:		assigned_parameter
+	 	 		| non_assigned_parameter
 
 assigned_parameter:	ID ASSIGNMENT_OP non_assigned_parameter
 
-non_assigned_parameter:	number
-		      |  STRING
-| func_call
-| ID
-| class_init 
-
+non_assigned_parameter:	number | STRING | func_call | ID | class_init 
 
 %%
 
