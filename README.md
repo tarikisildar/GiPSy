@@ -4,8 +4,9 @@ Parser for a programming language that targets GIS programming for a Programming
 ## REQUIREMENTS & INSTALLATION
 ___________________________________
 **To install flex and yacc in Ubuntu:**
-	1. sudo apt-get install flex
-	2. sudo apt-get install bison
+
+	sudo apt-get install flex
+	sudo apt-get install bison
   
 1. First Compile yacc program
 
@@ -21,10 +22,10 @@ ___________________________________
    
 3. Run the following commands
 
-	- gcc -o gipsy_parser.out y.tab.c lex.yy.c -lfl -lm
-	- ./gipsy_parser\.out < inp
+	- gcc -o gipsy_parser y.tab.c lex.yy.c -lfl -lm
+	- ./gipsy_parser < inp.txt
   
-  or you can just use make that includes 1, 2 and 3.1, then run 3.2
+  - Or you can just use make that includes 1, 2 and 3.1, then run 3.2
   
-      make
-      ./gipsy_parser\.out < inp
+      	make
+      	./gipsy_parser < inp.txt
