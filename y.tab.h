@@ -1,8 +1,9 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.4.1.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2019 Free Software Foundation,
+   Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -29,6 +30,9 @@
 
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
+
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
 
 #ifndef YY_YY_Y_TAB_H_INCLUDED
 # define YY_YY_Y_TAB_H_INCLUDED
@@ -93,7 +97,12 @@ extern int yydebug;
     INTEGER = 303,
     FLOAT = 304,
     STRING = 305,
-    UNSIGNED = 306
+    UNSIGNED = 306,
+    BI_SHOWONMAP = 307,
+    BI_SEARCHLOCATION = 308,
+    BI_GETROADSPEED = 309,
+    BI_GETLOCATION = 310,
+    BI_SHOWTARGET = 311
   };
 #endif
 /* Tokens.  */
@@ -146,6 +155,11 @@ extern int yydebug;
 #define FLOAT 304
 #define STRING 305
 #define UNSIGNED 306
+#define BI_SHOWONMAP 307
+#define BI_SEARCHLOCATION 308
+#define BI_GETROADSPEED 309
+#define BI_GETLOCATION 310
+#define BI_SHOWTARGET 311
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

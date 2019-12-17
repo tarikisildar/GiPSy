@@ -51,6 +51,11 @@ list {var_ident}(\[{integer}*\])+
 "["			return LEFT_SQUARE_BRACE;
 "]"			return RIGHT_SQUARE_BRACE;
 {special}		return SPECIAL;
+"showonmap"		return BI_SHOWONMAP;
+"searchlocation"	return BI_SEARCHLOCATION;
+"getroadspeed"		return BI_GETROADSPEED;
+"getlocation"		return BI_GETLOCATION;
+"showtarget"		return BI_SHOWTARGET;
 "and"			return AND_OP;
 "or"			return OR_OP;
 "if"			return IF;
@@ -71,7 +76,7 @@ list {var_ident}(\[{integer}*\])+
 {unsignedInteger}	return UNSIGNED;
 {integer}		return INTEGER;
 {float}			return FLOAT;
-{string}			return STRING;
+{string}		return STRING;
 \n                      {};
 [ \t]			{}; 			
 %%

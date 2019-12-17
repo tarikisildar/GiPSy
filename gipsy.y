@@ -11,6 +11,7 @@
 %token LEFTBRACE RIGHTBRACE LEFT_PARANT RIGHT_PARANT LEFT_SQUARE_BRACE RIGHT_SQUARE_BRACE
 %token SPECIAL IF ELSE FOR WHILE CLASS NEW IMPORT M PLUS_EQ VOID RETURN PASS
 %token INTEGER_TYPE STRING_TYPE FLOAT_TYPE ID INTEGER FLOAT STRING UNSIGNED
+%token BI_SHOWONMAP BI_SEARCHLOCATION BI_GETROADSPEED BI_GETLOCATION BI_SHOWTARGET
 %define parse.error verbose
 %%
 start: program  {
@@ -48,7 +49,7 @@ statement:		PASS SEMICOLON
 			| return_statement
 			| expression SEMICOLON	
 if_statement:		IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE ELSE LEFTBRACE statement_list RIGHTBRACE
-	    	    		| IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
+	    	    	| IF LEFT_PARANT expression RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE
 
 loop_statements:	for | while
 
@@ -64,45 +65,45 @@ return_statement:	RETURN parameter SEMICOLON
 return_type:		decl_type | VOID ID	
 
 class_def:		CLASS ID LEFTBRACE constructor_list decl_list RIGHTBRACE
-	 	 		| CLASS ID LEFTBRACE constructor_list RIGHTBRACE
+	 	 	| CLASS ID LEFTBRACE constructor_list RIGHTBRACE
 			| CLASS ID LEFTBRACE decl_list RIGHTBRACE
 
 constructor_list:	constructor
-					| constructor constructor_list
+			| constructor constructor_list
 
 constructor:		ID LEFT_PARANT decl_type_list RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
-	   	   		| ID LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
+	   	   	| ID LEFT_PARANT RIGHT_PARANT LEFTBRACE statement_list RIGHTBRACE 
 
 decl_type_list:		decl_type 
-	      	      		| decl_type COMMA decl_type_list
+	      	      	| decl_type COMMA decl_type_list
 
 decl_type:		list_type list_dim
-	 	 		| type_const ID
+	 	 	| type_const ID
 			| ID ID
 
 list_type:		type_const ID | ID
 
 list_element:		non_assigned_parameter COMMA list_element
-	    	    		| non_assigned_parameter
+	    	    	| non_assigned_parameter
 
 list: 			LEFTBRACE list COMMA list RIGHTBRACE
-        			| LEFTBRACE list RIGHTBRACE 
+        		| LEFTBRACE list RIGHTBRACE 
     			| list_element
 
 list_dim: 		LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE
-				| LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE list_dim
-				| LEFT_SQUARE_BRACE ID RIGHT_SQUARE_BRACE
+			| LEFT_SQUARE_BRACE UNSIGNED RIGHT_SQUARE_BRACE list_dim
+			| LEFT_SQUARE_BRACE ID RIGHT_SQUARE_BRACE
 
 decl_init:		ASSIGNMENT_OP expression
-	 	 		| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
+	 	 	| ASSIGNMENT_OP LEFTBRACE list RIGHTBRACE
 
 expression:		expression assignment_op expression_post
-	  	  		| expression_post
+	  	  	| expression_post
 
-expression_post:  expression_post post_pre_ops
+expression_post:	expression_post post_pre_ops
 			| post_pre_ops expression_post
 			| NOT expression_post
-            | term_comp_log
+            		| term_comp_log
             
 post_pre_ops:		INCREMENT | DECREMENT
 
@@ -133,7 +134,12 @@ term_mult:		term_mult mult_op term_paranthesis
 term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT | ID | ID list_dim | number | STRING | STRING list_dim | func_call | func_call list_dim | class_init
 
 func_call:		func_name LEFT_PARANT  parameter_list RIGHT_PARANT
-	 	 		| func_name LEFT_PARANT  RIGHT_PARANT 
+	 	 	| func_name LEFT_PARANT RIGHT_PARANT
+			| BI_SHOWONMAP LEFT_PARANT expression expression  RIGHT_PARANT
+			| BI_SEARCHLOCATION LEFT_PARANT expression RIGHT_PARANT
+			| BI_GETROADSPEED LEFT_PARANT expression RIGHT_PARANT
+			| BI_GETLOCATION LEFT_PARANT expression RIGHT_PARANT
+			| BI_SHOWTARGET LEFT_PARANT expression RIGHT_PARANT
 
 func_name:		ID DOT func_name | ID
 
