@@ -102,7 +102,11 @@ extern int yydebug;
     BI_SEARCHLOCATION = 308,
     BI_GETROADSPEED = 309,
     BI_GETLOCATION = 310,
-    BI_SHOWTARGET = 311
+    BI_SHOWTARGET = 311,
+    GRAPH_TYPE = 312,
+    ROAD_TYPE = 313,
+    USER_TYPE = 314,
+    GPSLOC_TYPE = 315
   };
 #endif
 /* Tokens.  */
@@ -160,6 +164,10 @@ extern int yydebug;
 #define BI_GETROADSPEED 309
 #define BI_GETLOCATION 310
 #define BI_SHOWTARGET 311
+#define GRAPH_TYPE 312
+#define ROAD_TYPE 313
+#define USER_TYPE 314
+#define GPSLOC_TYPE 315
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

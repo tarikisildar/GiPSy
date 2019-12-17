@@ -56,6 +56,10 @@ list {var_ident}(\[{integer}*\])+
 "getroadspeed"		return BI_GETROADSPEED;
 "getlocation"		return BI_GETLOCATION;
 "showtarget"		return BI_SHOWTARGET;
+"Graph"			return GRAPH_TYPE;
+"Road"			return ROAD_TYPE;
+"User"			return USER_TYPE;
+"GpsLoc"		return GPSLOC_TYPE;
 "and"			return AND_OP;
 "or"			return OR_OP;
 "if"			return IF;

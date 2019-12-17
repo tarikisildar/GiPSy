@@ -11,7 +11,7 @@
 %token LEFTBRACE RIGHTBRACE LEFT_PARANT RIGHT_PARANT LEFT_SQUARE_BRACE RIGHT_SQUARE_BRACE
 %token SPECIAL IF ELSE FOR WHILE CLASS NEW IMPORT M PLUS_EQ VOID RETURN PASS
 %token INTEGER_TYPE STRING_TYPE FLOAT_TYPE ID INTEGER FLOAT STRING UNSIGNED
-%token BI_SHOWONMAP BI_SEARCHLOCATION BI_GETROADSPEED BI_GETLOCATION BI_SHOWTARGET
+%token BI_SHOWONMAP BI_SEARCHLOCATION BI_GETROADSPEED BI_GETLOCATION BI_SHOWTARGET GRAPH_TYPE ROAD_TYPE USER_TYPE GPSLOC_TYPE
 %define parse.error verbose
 %%
 start: program  {
@@ -80,8 +80,11 @@ decl_type_list:		decl_type
 decl_type:		list_type list_dim
 	 	 	| type_const ID
 			| ID ID
+			| builtin_type ID
 
-list_type:		type_const ID | ID
+builtin_type:		GRAPH_TYPE | ROAD_TYPE | USER_TYPE | GPSLOC_TYPE
+
+list_type:		type_const ID | ID | builtin_type ID
 
 list_element:		non_assigned_parameter COMMA list_element
 	    	    	| non_assigned_parameter
@@ -143,15 +146,17 @@ func_call:		func_name LEFT_PARANT  parameter_list RIGHT_PARANT
 
 func_name:		ID DOT func_name | ID
 
-class_init:		NEW ID LEFT_PARANT parameter_list RIGHT_PARANT
-	  	  		| NEW ID LEFT_PARANT RIGHT_PARANT 
+class_init:		NEW class_name LEFT_PARANT parameter_list RIGHT_PARANT
+	  	  	| NEW class_name LEFT_PARANT RIGHT_PARANT 
+
+class_name: ID | builtin_type
 
 parameter_list:		parameter
-	      	      		| parameter COMMA parameter_list
+	      	      	| parameter COMMA parameter_list
 
 
 parameter:		assigned_parameter
-	 	 		| non_assigned_parameter
+	 	 	| non_assigned_parameter
 
 assigned_parameter:	ID ASSIGNMENT_OP non_assigned_parameter
 
