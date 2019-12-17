@@ -45,7 +45,7 @@ class Util
 		while(!g.isEmpty())
         	{
 			crossroad temp = g.getCrossRoad(i);
-               		showOnMap(temp);
+               		showOnMap(temp.getlong(),temp.getlat());
 			g.remove(temp);
 			i--;
         	}

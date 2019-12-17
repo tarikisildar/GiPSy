@@ -138,7 +138,7 @@ term_paranthesis:	LEFT_PARANT expression RIGHT_PARANT | ID | ID list_dim | numbe
 
 func_call:		func_name LEFT_PARANT  parameter_list RIGHT_PARANT
 	 	 	| func_name LEFT_PARANT RIGHT_PARANT
-			| BI_SHOWONMAP LEFT_PARANT expression expression  RIGHT_PARANT
+			| BI_SHOWONMAP LEFT_PARANT expression COMMA expression  RIGHT_PARANT
 			| BI_SEARCHLOCATION LEFT_PARANT expression RIGHT_PARANT
 			| BI_GETROADSPEED LEFT_PARANT expression RIGHT_PARANT
 			| BI_GETLOCATION LEFT_PARANT expression RIGHT_PARANT
