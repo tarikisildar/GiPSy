@@ -58,6 +58,7 @@ list {var_ident}(\[{integer}*\])+
 "showtarget"		return BI_SHOWTARGET;
 "Graph"			return GRAPH_TYPE;
 "Road"			return ROAD_TYPE;
+"CrossRoad"             return CROAD_TYPE;
 "User"			return USER_TYPE;
 "GpsLoc"		return GPSLOC_TYPE;
 "and"			return AND_OP;

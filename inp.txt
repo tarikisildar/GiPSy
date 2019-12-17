@@ -9,8 +9,8 @@ void main()
 	if(harita.isEmpty())
 	{
 
-		golbasi = new crossRoad(39.790496838,32.80166346);
-		asti = new crossRoad(39.920073, 32.815298);
+		golbasi = new CrossRoad(39.790496838,32.80166346);
+		asti = new CrossRoad(39.920073, 32.815298);
 		harita.add(golbasi);
 		harita.add(asti);
 		harita.addRoad(golbasi,asti,82);

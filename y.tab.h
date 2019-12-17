@@ -102,7 +102,8 @@ extern int yydebug;
     GRAPH_TYPE = 312,
     ROAD_TYPE = 313,
     USER_TYPE = 314,
-    GPSLOC_TYPE = 315
+    GPSLOC_TYPE = 315,
+    CROAD_TYPE = 316
   };
 #endif
 /* Tokens.  */
@@ -164,6 +165,7 @@ extern int yydebug;
 #define ROAD_TYPE 313
 #define USER_TYPE 314
 #define GPSLOC_TYPE 315
+#define CROAD_TYPE 316
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
